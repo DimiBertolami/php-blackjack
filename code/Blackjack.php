@@ -1,12 +1,9 @@
 <?php
 
 declare(strict_types=1);
+require_once 'Deck.php';
+require_once 'Player.php';
 
-require 'Suit.php';
-require 'Card.php';
-require 'Deck.php';
-require 'Player.php';
-$game = new Blackjack('Dimi', 'Dealer');
 class Blackjack
 {
     private object $player;
@@ -14,10 +11,10 @@ class Blackjack
     private array $deck;
         public function __construct(string $player, string $dealer, array $deck)
         {
-            $this->player = new Player($deck[]);
-            $this->dealer = new Player($deck[]);
-            $deck = new Deck();
-            $deck->shuffle();
+            $this->player = new Player($this->deck);
+            $this->dealer = new Player($this->deck);
+            $this->deck = new Deck();
+            $this->deck->shuffle();
         }
 
     /**
