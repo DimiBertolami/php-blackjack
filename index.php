@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 include_once 'code/Blackjack.php';
-
+$blackjack = new Blackjack();
 if(array_key_exists('hit', $_POST)) {
     hit();
 }
@@ -45,15 +45,15 @@ function surrender() {
         <h1 class="text-center mt-3">OOP-BlackJack</h1>
     </header>
 
-<form method="post">
+<form method="post" action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <input type="submit" name="hit"
-           class="btn-primary" value="hit" />
+           class="btn-primary" value="hit" style="width:60px; height:60px; font-size: xx-large"/>
 
     <input type="submit" name="stand"
-           class="btn-secondary" value="stand" />
+           class="btn-secondary" value="stand" style="width:100px; height:60px; font-size: xx-large"/>
 
     <input type="submit" name="surrender"
-           class="btn-danger" value="surrender" />
+           class="btn-danger" value="surrender" style="width:150px; height:60px; font-size: xx-large"/>
 </form>
     <!-- Close Bootstrap container-->
 </div>

@@ -6,15 +6,15 @@ require_once 'Player.php';
 
 class Blackjack
 {
-    private object $player;
-    private object $dealer;
-    private array $deck;
-        public function __construct(string $player, string $dealer, array $deck)
+    private Player $player;
+    private Dealer $dealer;
+    private Deck $deck;
+        public function __construct(object $player, object $dealer, array $deck)
         {
-            $this->player = new Player($this->deck);
-            $this->dealer = new Player($this->deck);
             $this->deck = new Deck();
             $this->deck->shuffle();
+            $this->player = new Player($this->deck);
+            $this->dealer = new Dealer($this->deck);
         }
 
     /**
