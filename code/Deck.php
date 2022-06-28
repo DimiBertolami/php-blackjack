@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+include_once 'Suit.php';
+include_once 'Card.php';
 class Deck
 {
     private const CARDS_PER_SUIT = 14;//including the knight card.
@@ -38,6 +40,14 @@ class Deck
 
     public function drawCard() :? Card
     {
-        return array_shift($this->cards);
+        $myCard = array_shift($this->cards);
+//        echo 'Var_dump my card: <br>';
+//        var_dump($myCard);
+//        echo 'print_r my card: <br>';
+//        print_r($myCard);
+        echo $myCard->getUnicodeCharacter(true).'<br>';
+//        echo 'trying to get the Get Unicode Character thingy to work: '.$myCard->getUnicodeCharacter(true).'<br>';
+//        return $myCard;
+        return $myCard;
     }
 }

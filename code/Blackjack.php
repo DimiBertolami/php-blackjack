@@ -6,10 +6,10 @@ require_once 'Player.php';
 
 class Blackjack
 {
-    private Player $player;
-    private Dealer $dealer;
-    private Deck $deck;
-        public function __construct(object $player, object $dealer, array $deck)
+    protected Player $player;
+    protected Dealer $dealer;
+    protected Deck $deck;
+        public function __construct()
         {
             $this->deck = new Deck();
             $this->deck->shuffle();
@@ -18,7 +18,7 @@ class Blackjack
         }
 
     /**
-     * @return string
+     * @return object
      */
     public function getPlayer(): object
     {
@@ -34,11 +34,12 @@ class Blackjack
     }
 
     /**
-     * @return array
+     * @return Deck
      */
-    public function getDeck(): array
+    public function getDeck(): Deck
     {
         return $this->deck;
+
     }
 
 }

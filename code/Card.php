@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 class Card
 {
-    private const ACE_VALUE = 11;
-    private const FACE_VALUE = 10;
+    protected const ACE_VALUE = 11;
+    protected const FACE_VALUE = 10;
 
-    private Suit $suit;
-    private int $value;
+    protected Suit $suit;
+    protected int $value;
 
     public function __construct(Suit $suit, int $value)
     {
