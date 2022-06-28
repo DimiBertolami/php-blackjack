@@ -18,30 +18,30 @@ if (isset($_POST['start'])) {
     echo "you start with: " . $score;
 }
 
-if(array_key_exists('hit', $_POST)) {
-    hit();
+if(isset($_POST['hit'])) {
+    $newGame = $_SESSION['blackjack'];
+    echo "Your score is: ". unserialize($newGame)->getPlayer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
+//    hit();
 }
-else if(array_key_exists('stand', $_POST)) {
+else if(isset($_POST['stand'])) {
     stand();
 }
-else if(array_key_exists('surrender', $_POST)) {
+else if(isset($_POST['surrender'])) {
     surrender();
 }
 function hit(): void
 {
-    unserialize($_SESSION['blackjack'])->getPlayer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
-//    echo "Hit me!";
-
+    echo "Your score is: ". unserialize($_SESSION['blackjack'])->getPlayer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
 }
 function stand(): void
 {
-    unserialize($_SESSION['blackjack'])->getDealer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
-    echo "Stand!";
+//    unserialize($_SESSION['blackjack'])->getDealer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
+    echo "Stand!" . unserialize($_SESSION['blackjack'])->getDealer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
 }
 function surrender(): void
 {
-    unserialize($_SESSION['blackjack'])->getPlayer()->surrender();
-    echo "you lost!";
+
+    echo "you lost!" . unserialize($_SESSION['blackjack'])->getPlayer()->surrender();
 }
 require 'view.php';
 ?>

@@ -39,7 +39,6 @@ class Blackjack
     public function getDeck(): Deck
     {
         return $this->deck;
-
     }
 
 }
