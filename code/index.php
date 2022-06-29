@@ -8,19 +8,28 @@ include_once 'Player.php';
 include_once 'Suit.php';
 
 session_start();
-$_SESSION['blackjack'] = serialize(new Blackjack());
-$score = unserialize($_SESSION['blackjack'])->getPlayer()->getScore();
-$unserialize = unserialize($_SESSION['blackjack']);
+if (isset($_SESSION['blackjack'])){
+    $game = unserialize($_SESSION['blackjack']);
+    $score = $game->getPlayer()->getScore();
+} else {
+    $game = new Blackjack();
+    $score = 0;
+//    $_SESSION['blackjack'] = serialize($game);
+
+}
+//$_SESSION['blackjack'] = serialize(new Blackjack());
 
 if (isset($_POST['start'])) {
     //Create a new Blackjack object.
-    $newGame = $_SESSION['blackjack'];
-    echo "you start with: " . $score;
+//    $newGame = $_SESSION['blackjack'];
+    echo "<br>";
+    echo "you start with: " . $score . "<br>";
 }
 
 if(isset($_POST['hit'])) {
-    $newGame = $_SESSION['blackjack'];
-    echo "Your score is: ". unserialize($newGame)->getPlayer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
+//    $newGame = $game;
+    echo "<br>";
+    echo "Your score is: ". $game->getPlayer()->hit($game->getDeck());
 //    hit();
 }
 else if(isset($_POST['stand'])) {
@@ -31,17 +40,24 @@ else if(isset($_POST['surrender'])) {
 }
 function hit(): void
 {
-    echo "Your score is: ". unserialize($_SESSION['blackjack'])->getPlayer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
+    $game = unserialize($_SESSION['blackjack']);
+    echo "<br>Your score is: ". $game->getPlayer()->hit($game->getDeck());
+//    $_SESSION['blackjack'] = serialize($game);
 }
 function stand(): void
 {
 //    unserialize($_SESSION['blackjack'])->getDealer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
-    echo "Stand!" . unserialize($_SESSION['blackjack'])->getDealer()->hit(unserialize($_SESSION['blackjack'])->getDeck());
+    $game = unserialize($_SESSION['blackjack']);
+    echo "Stand!" . $game->getDealer()->hit($game->getDeck());
+//    $_SESSION['blackjack'] = serialize($game);
 }
 function surrender(): void
 {
-
-    echo "you lost!" . unserialize($_SESSION['blackjack'])->getPlayer()->surrender();
+    $game = unserialize($_SESSION['blackjack']);
+    echo "you lost!" . $game->getPlayer()->lose();
+//    $_SESSION['blackjack'] = serialize($game);
 }
+$_SESSION['blackjack'] = serialize($game);
+
 require 'view.php';
 ?>

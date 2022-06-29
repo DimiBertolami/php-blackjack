@@ -21,16 +21,17 @@ class Player
     {
         $this->cards[] = $deck->drawCard();
         if($this->getScore()>21){
-            $this->surrender();
+            $this->lose();
         }
         if($this->lost=true){
-            echo $this->getScore();
+            return $this->getScore();
         }
 
     }
-    public function surrender()
+    public function lose():bool
     {
-        $this->lost = true;
+//        $this->lost = true;
+        return $this->lost = true;
     }
     public function getScore($total=0):int
     {

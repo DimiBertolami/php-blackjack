@@ -41,13 +41,11 @@ class Deck
     public function drawCard() :? Card
     {
         $myCard = array_shift($this->cards);
-//        echo 'Var_dump my card: <br>';
-//        var_dump($myCard);
-//        echo 'print_r my card: <br>';
-//        print_r($myCard);
-        echo $myCard->getUnicodeCharacter(true).'<br>';
-//        echo 'trying to get the Get Unicode Character thingy to work: '.$myCard->getUnicodeCharacter(true).'<br>';
-//        return $myCard;
+        echo 'Var_dump my card: <br>';
+        var_dump($myCard);
+        echo 'print_r my card: <br>';
+        print_r($myCard);
+        echo '<span style="font-size: 200px;">' . $myCard->getUnicodeCharacter(true) . '</span>';
         return $myCard;
     }
 }
